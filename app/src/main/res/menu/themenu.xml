@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/Homemenu" android:title="Home"/>
+        <item android:id="@+id/Notesmenu" android:title="Notes"/>
+        <item android:id="@+id/Paintmenu" android:title="Paint"/>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item android:title="Information">
+
+            <menu>
+                <group>
+                    <item android:id="@+id/Aboutusmenu" android:title="About us"/>
+                    <item android:id="@+id/Infomenu" android:title="App info"/>
+                </group>
+
+            </menu>
+
+        </item>
+
+    </group>
+
+</menu>
