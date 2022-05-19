@@ -67,4 +67,13 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
         }
         return super.onOptionsItemSelected(item);
     }
+
+    //When Back is pressed go to main activity refreshing it, NOT reloading it
+    @Override
+    public void onBackPressed() {
+        Intent previous = new Intent(this,MainActivity.class);
+        previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(previous);
+        super.onBackPressed();
+    }
 }

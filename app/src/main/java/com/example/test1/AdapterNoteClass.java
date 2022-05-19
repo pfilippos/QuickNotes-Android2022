@@ -50,7 +50,7 @@ public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.View
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{
-        TextView notetitle,notetext,notedate,notetime,tvName;
+        TextView notetitle,notetext,notedate,notetime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

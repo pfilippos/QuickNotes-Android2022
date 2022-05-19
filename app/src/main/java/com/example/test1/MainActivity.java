@@ -10,14 +10,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
+
+    ImageView imageView;
+    TextView textView;
+    List<AnoteClass> AreThereNotes;
 
 
     @Override
@@ -44,6 +53,22 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //Checks to see if there are any notes available, if not shows message and arrow!
+        textView = findViewById(R.id.aretherenotes);
+        imageView = findViewById(R.id.Arrow);
+        NoteSimpleDataBase db = new NoteSimpleDataBase(this);
+        AreThereNotes = db.getNotesList();
+        if(AreThereNotes.isEmpty()){
+            textView.setVisibility(View.VISIBLE);
+            imageView.setVisibility(View.VISIBLE);
+        }
+        else{
+            textView.setVisibility(View.GONE);
+            imageView.setVisibility(View.GONE);
+        }
+
+
+        //Listener for the draw Menu on the home screen
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -75,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //These just open the corresponding Activity
     public void openActivityNotes(){
         Intent intent = new Intent(this, Activitynotes.class);
         startActivity(intent);
