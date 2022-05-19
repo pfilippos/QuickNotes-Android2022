@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/del"
-        android:title="Del"
+        android:title="Discard"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/Save"

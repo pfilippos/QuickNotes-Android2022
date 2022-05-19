@@ -56,8 +56,13 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
                 Intent intent = new Intent(this,ActivitynotesAdd.class);
                 startActivity(intent);
                 break;
-            case R.id.delete: // !!!! delete != del
-                Toast.makeText(this,"Min to patas tzampa den kanei kati",Toast.LENGTH_SHORT).show();
+            case R.id.ClearAll: // !!!! delete != del
+                NoteSimpleDataBase db = new NoteSimpleDataBase(this);
+                db.ClearAllNotes("notesDbTable");
+                //Toast.makeText(this,"Min to patas tzampa den kanei kati",Toast.LENGTH_SHORT).show();
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
                 break;
         }
         return super.onOptionsItemSelected(item);

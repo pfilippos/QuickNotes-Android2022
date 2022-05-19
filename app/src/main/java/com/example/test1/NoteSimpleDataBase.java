@@ -97,4 +97,11 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         return noteslist;
     }
 
+    public void ClearAllNotes(String Table_Name){
+        Log.d("patithike","tha ginei clear");
+        SQLiteDatabase db = this.getWritableDatabase();
+        String clearDBQuery = "DELETE FROM "+Table_Name;
+        db.execSQL(clearDBQuery);
+    }
+
 }

@@ -7,7 +7,7 @@
         android:title="Add"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/delete"
-        android:title="Delete"
+        android:id="@+id/ClearAll"
+        android:title="Clear"
         app:showAsAction="ifRoom" />
 </menu>
