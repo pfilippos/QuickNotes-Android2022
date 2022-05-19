@@ -87,7 +87,7 @@ public class ActivitynotesAdd extends AppCompatActivity {
                 AnoteClass note = new AnoteClass(noteTitle.getText().toString(),noteText.getText().toString(),theDate,theTime); //create a knew note without id
                 NoteSimpleDataBase db = new NoteSimpleDataBase(this);
                 db.NoteaddFunc(note); //Adds note object to database
-                Toast.makeText(this,"Note saved succefully",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Note saved successfully",Toast.LENGTH_SHORT).show();
                 onBackPressed();
                 Intent previous = new Intent(this,Activitynotes.class);
                 previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

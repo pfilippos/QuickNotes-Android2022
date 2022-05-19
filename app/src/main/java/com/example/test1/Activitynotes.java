@@ -59,7 +59,7 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
             case R.id.ClearAll: // !!!! delete != del
                 NoteSimpleDataBase db = new NoteSimpleDataBase(this);
                 db.ClearAllNotes("notesDbTable");
-                //Toast.makeText(this,"Min to patas tzampa den kanei kati",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"All notes cleared successfully",Toast.LENGTH_SHORT).show();
                 finish();
                 overridePendingTransition(0, 0);
                 startActivity(getIntent());

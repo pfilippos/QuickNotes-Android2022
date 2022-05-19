@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +50,7 @@ public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.View
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{
-        TextView notetitle,notetext,notedate,notetime;
+        TextView notetitle,notetext,notedate,notetime,tvName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +58,28 @@ public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.View
             notetext = itemView.findViewById(R.id.thenotetext);
             notedate = itemView.findViewById(R.id.thenotedate);
             notetime = itemView.findViewById(R.id.thenotetime);
+
+            //!!!!FROM HERE YOU GET WHICH NOTE HAS BEEN PRESSED
+            //Single Tapup
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), "Single Tap Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            //Long Press
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(v.getContext(), "Long Tap and Position is " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+            });
+
+
         }
     }
+
+
 }
