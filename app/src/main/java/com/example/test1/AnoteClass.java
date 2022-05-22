@@ -1,5 +1,7 @@
 package com.example.test1;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 public class AnoteClass {
     private long ID;
     private String title;
@@ -24,6 +26,8 @@ public class AnoteClass {
         this.time=time;
 
     }
+
+
 
     //auto generated setters-getters
     public long getID() {
@@ -65,4 +69,6 @@ public class AnoteClass {
     public void setTime(String time) {
         this.time = time;
     }
+
+
 }

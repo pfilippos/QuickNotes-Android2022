@@ -29,7 +29,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {  //Craeting the database table
-         String currentque = "CREATE TABLE "+ DATABASE_TABLE + "("+ KEY_id+" INT PRIMARY KEY,"+
+         String currentque = "CREATE TABLE IF NOT EXISTS "+ DATABASE_TABLE + "("+ KEY_id+" INT PRIMARY KEY,"+
                  KEY_notetitle + " TEXT,"+
                  KEY_notetext + " TEXT,"+
                  KEY_date + " TEXT,"+
@@ -59,6 +59,20 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
 
         long ID = db.insert(DATABASE_TABLE,null,contentValues);
         Log.d("Inserted","ID ->"+ID);
+
+        return ID;
+    }
+
+    public long NotedelFunc(AnoteClass note){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_notetitle,note.getTitle());
+        contentValues.put(KEY_notetext,note.getText());
+        contentValues.put(KEY_time,note.getTime());
+        contentValues.put(KEY_date,note.getDate());
+
+        long ID = db.delete(DATABASE_TABLE,KEY_id+" = ?",new String[]{String.valueOf(note.getID())});
+        Log.d("Deleted","ID ->"+ID);
 
         return ID;
     }

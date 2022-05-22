@@ -12,6 +12,7 @@ import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
     RecyclerView recyclerView;
     AdapterNoteClass adapter;
     List<AnoteClass> notes;
+    NoteSimpleDataBase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +33,47 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
         toolbar = findViewById(R.id.toolbarnotes);
         setSupportActionBar(toolbar);
 
-        NoteSimpleDataBase db = new NoteSimpleDataBase(this);
+        db = new NoteSimpleDataBase(this);
         notes = db.getNotesList();
 
         recyclerView = findViewById(R.id.listOfNotes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterNoteClass(this,notes);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                AnoteClass note = notes.get(position);
+                Intent intent = new Intent(getApplicationContext(),ActivitynotesEdit.class);
+                intent.putExtra("nTitle",note.getTitle());
+                intent.putExtra("nContent",note.getText());
+                intent.putExtra("nId",note.getID());
+
+                startActivity(intent);
+                notes = db.getNotesList();
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+
 
     }
+    //OnResume reload database db
+    @Override
+    protected void onResume() {
+        super.onResume();
+        notes = db.getNotesList();
+        adapter.notifyDataSetChanged();
+    }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
