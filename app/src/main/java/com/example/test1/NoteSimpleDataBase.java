@@ -63,6 +63,21 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         return ID;
     }
 
+    public long NoteupdFunc(AnoteClass note){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(KEY_notetitle,note.getTitle());
+        contentValues.put(KEY_notetext,note.getText());
+        contentValues.put(KEY_time,note.getTime());
+        contentValues.put(KEY_date,note.getDate());
+
+        //Update the row
+        long ID = db.update(DATABASE_TABLE,contentValues,KEY_notetitle+" = ?",new String[]{note.getTitle()});
+        Log.d("Updated", "\" "+ID +" \"");
+
+        return ID;
+    }
+
     public long NotedelFunc(AnoteClass note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -71,8 +86,9 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         contentValues.put(KEY_time,note.getTime());
         contentValues.put(KEY_date,note.getDate());
 
-        long ID = db.delete(DATABASE_TABLE,KEY_id+" = ?",new String[]{String.valueOf(note.getID())});
-        Log.d("Deleted","ID ->"+ID);
+        //Delete the row
+        long ID = db.delete(DATABASE_TABLE,KEY_notetitle+" = ?",new String[]{note.getTitle()});
+        Log.d("Deleted", "\" "+ID +" \"");
 
         return ID;
     }

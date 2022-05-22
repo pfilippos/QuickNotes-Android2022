@@ -47,7 +47,7 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
                 Intent intent = new Intent(getApplicationContext(),ActivitynotesEdit.class);
                 intent.putExtra("nTitle",note.getTitle());
                 intent.putExtra("nContent",note.getText());
-                intent.putExtra("nId",note.getID());
+               // intent.putExtra("nId",note.getID());
 
                 startActivity(intent);
                 notes = db.getNotesList();

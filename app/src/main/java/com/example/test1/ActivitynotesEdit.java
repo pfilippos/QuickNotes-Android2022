@@ -18,7 +18,9 @@ import java.util.Calendar;
 
 public class ActivitynotesEdit extends AppCompatActivity {
     Toolbar toolbar;
-    String noteTitle, noteText;
+    String noteTitle;
+    String noteText;
+   // int noteID;
     EditText enoteTitle, enoteText;
     String theDate;
     String theTime;
@@ -49,6 +51,7 @@ public class ActivitynotesEdit extends AppCompatActivity {
 
         //get caller intent data
         Intent caller = getIntent();
+       // noteID = caller.getIntExtra("nID", 0);
 
         noteTitle = caller.getStringExtra("nTitle");
         noteText = caller.getStringExtra("nContent");
@@ -98,21 +101,24 @@ public class ActivitynotesEdit extends AppCompatActivity {
     @Override//Almost the same as from Activitynotes but with Save and del !!
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         AnoteClass note = new AnoteClass(enoteTitle.getText().toString(),enoteText.getText().toString(),theDate,theTime); //create a knew note without id
+        Intent previous = new Intent(this,Activitynotes.class);
 
         switch (item.getItemId()){
             case R.id.Save:
 
-                db.NoteaddFunc(note); //Adds note object to database
+                db.NoteupdFunc(note); //Updates note object to database
                 Toast.makeText(this,"Note saved successfully",Toast.LENGTH_SHORT).show();
-                Intent previous = new Intent(this,Activitynotes.class);
                 previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(previous);
                 break;
             case R.id.del:
-                Toast.makeText(this,"Note deleted successfully",Toast.LENGTH_SHORT).show();
+                db.NotedelFunc(note);
+                Toast.makeText(this,"Note Discarded",Toast.LENGTH_SHORT).show();
+                previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(previous);
                 break;
         }
-        db.NotedelFunc(note);
+
         onBackPressed();
         return super.onOptionsItemSelected(item);
     }
