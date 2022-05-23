@@ -4,6 +4,4 @@
     android:layout_height="200dp"
     android:background="@drawable/istockphoto_1146651425_612x612"
     android:orientation="vertical"
-    android:padding="20dp">
-
-</LinearLayout>
+    android:padding="20dp"/>

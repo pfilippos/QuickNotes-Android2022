@@ -1,7 +1,6 @@
-package com.example.test1;
+package com.example.quickNotes;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +14,11 @@ import java.util.List;
 
 public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.ViewHolder> {
     LayoutInflater inflater;
-    List<AnoteClass> anoteClassList ;
+    List<Note> noteList;
 
-    AdapterNoteClass(Context context, List<AnoteClass> anoteClassList){
+    AdapterNoteClass(Context context, List<Note> noteList){
         this.inflater = LayoutInflater.from(context);
-        this.anoteClassList = anoteClassList;
+        this.noteList = noteList;
     }
 
     @NonNull
@@ -31,10 +30,10 @@ public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.View
 
     @Override
     public void onBindViewHolder(@NonNull AdapterNoteClass.ViewHolder holder, int position) {
-        String title = anoteClassList.get(position).getTitle();
-        String date = anoteClassList.get(position).getDate();
-        String time = anoteClassList.get(position).getTime();
-        String text = anoteClassList.get(position).getText();
+        String title = noteList.get(position).getTitle();
+        String date = noteList.get(position).getDate();
+        String time = noteList.get(position).getTime();
+        String text = noteList.get(position).getText();
 
         holder.notetitle.setText(title);
         holder.notedate.setText(date);
@@ -46,7 +45,7 @@ public class AdapterNoteClass extends RecyclerView.Adapter<AdapterNoteClass.View
 
     @Override
     public int getItemCount() {
-        return anoteClassList.size();
+        return noteList.size();
     }
 
     public class ViewHolder extends  RecyclerView.ViewHolder{

@@ -1,4 +1,4 @@
-package com.example.test1;
+package com.example.quickNotes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
-    List<AnoteClass> AreThereNotes;
+    List<Note> AreThereNotes;
 
 
     @Override
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         //Checks to see if there are any notes available, if not shows message and arrow!
         textView = findViewById(R.id.aretherenotes);
         imageView = findViewById(R.id.Arrow);
-        NoteSimpleDataBase db = new NoteSimpleDataBase(this);
+        SQLiteDB db = new SQLiteDB(this);
         AreThereNotes = db.getNotesList();
         if(AreThereNotes.isEmpty()){
             textView.setVisibility(View.VISIBLE);
@@ -82,8 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         openActivityNotes();
                         break;
 
-                    case R.id.Paintmenu:
-                        break;
+
 
                     case R.id.Aboutusmenu:
                         openAboutus();

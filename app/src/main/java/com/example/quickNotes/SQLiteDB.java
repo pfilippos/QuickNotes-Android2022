@@ -1,4 +1,4 @@
-package com.example.test1;
+package com.example.quickNotes;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoteSimpleDataBase extends SQLiteOpenHelper {
+public class SQLiteDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "notesDataBase";
@@ -23,7 +23,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
     private static final String KEY_time = "time";
     private static final String KEY_date = "date";
 
-    NoteSimpleDataBase(Context context){
+    SQLiteDB(Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
@@ -49,7 +49,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
 
     }
 
-    public long NoteaddFunc(AnoteClass note){
+    public long NoteaddFunc(Note note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_notetitle,note.getTitle());
@@ -63,7 +63,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         return ID;
     }
 
-    public long NoteupdFunc(AnoteClass note){
+    public long NoteupdFunc(Note note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_notetitle,note.getTitle());
@@ -78,7 +78,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         return ID;
     }
 
-    public long NotedelFunc(AnoteClass note){
+    public long NotedelFunc(Note note){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(KEY_notetitle,note.getTitle());
@@ -93,7 +93,7 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
         return ID;
     }
 
-    public AnoteClass NotegetFunc(long ID){
+    public Note NotegetFunc(long ID){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(DATABASE_TABLE,new String[]{KEY_id,KEY_notetitle,KEY_notetext,KEY_date,KEY_time},KEY_id+"=?",new String[]{String.valueOf(ID)},null,null,null);  //db pointer
 
@@ -101,26 +101,26 @@ public class NoteSimpleDataBase extends SQLiteOpenHelper {
             cursor.moveToFirst();
         }
 
-        AnoteClass anoteClass = new AnoteClass(cursor.getLong(0),cursor.getString(1),cursor.getString(2),cursor.getString(3), cursor.getString(4)); //get those columns basically
+        Note note = new Note(cursor.getLong(0),cursor.getString(1),cursor.getString(2),cursor.getString(3), cursor.getString(4)); //get those columns basically
 
-        return anoteClass;
+        return note;
     }
 
-    public List<AnoteClass> getNotesList(){
+    public List<Note> getNotesList(){
         SQLiteDatabase db = this.getReadableDatabase();
-        List<AnoteClass> noteslist = new ArrayList<>();
+        List<Note> noteslist = new ArrayList<>();
         String que = "SELECT * FROM "+DATABASE_TABLE;
         Cursor cursor = db.rawQuery(que,null);
 
         if(cursor.moveToFirst()){
             do{
-                AnoteClass anoteClass = new AnoteClass();
-                anoteClass.setID(cursor.getLong(0));
-                anoteClass.setTitle(cursor.getString(1));
-                anoteClass.setText(cursor.getString(2));
-                anoteClass.setDate(cursor.getString(3));
-                anoteClass.setTime(cursor.getString(4));
-                noteslist.add(anoteClass);
+                Note note = new Note();
+                note.setID(cursor.getLong(0));
+                note.setTitle(cursor.getString(1));
+                note.setText(cursor.getString(2));
+                note.setDate(cursor.getString(3));
+                note.setTime(cursor.getString(4));
+                noteslist.add(note);
             }while (cursor.moveToNext());
         }
 

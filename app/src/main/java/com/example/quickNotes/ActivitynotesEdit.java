@@ -1,4 +1,4 @@
-package com.example.test1;
+package com.example.quickNotes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,17 +16,22 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-public class ActivitynotesAdd extends AppCompatActivity {
+public class ActivitynotesEdit extends AppCompatActivity {
     Toolbar toolbar;
-    EditText noteTitle, noteText;
+    String noteTitle;
+    String noteText;
+   // int noteID;
+    EditText enoteTitle, enoteText;
     String theDate;
     String theTime;
     Calendar calendar;
+    SQLiteDB db;
 
 
     private String correct(int i) {
         if(i>=10){
             return String.valueOf(i);
+
         }
         else
             return "0"+i;
@@ -36,20 +41,34 @@ public class ActivitynotesAdd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_activitynotes_add);
+        setContentView(R.layout.activity_notes_edit);
+        db = new SQLiteDB(this);
+
 
         toolbar = findViewById(R.id.toolbarnotes);
         setSupportActionBar(toolbar);
 
 
-        noteTitle = findViewById(R.id.noteTitle);
-        noteText = findViewById(R.id.noteText);
+        //get caller intent data
+        Intent caller = getIntent();
+       // noteID = caller.getIntExtra("nID", 0);
 
-        getSupportActionBar().setTitle("AddNote - Notes - new note");
+        noteTitle = caller.getStringExtra("nTitle");
+        noteText = caller.getStringExtra("nContent");
 
-        noteTitle.addTextChangedListener(new TextWatcher() {
+        enoteTitle = findViewById(R.id.noteTitle);
+        enoteText = findViewById(R.id.noteText);
+        enoteTitle.setText(noteTitle);
+        enoteText.setText(noteText);
+
+
+
+        getSupportActionBar().setTitle("Edit Note");
+
+        enoteTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                getSupportActionBar().setTitle(charSequence);
 
             }
 
@@ -81,23 +100,28 @@ public class ActivitynotesAdd extends AppCompatActivity {
 
     @Override//Almost the same as from Activitynotes but with Save and del !!
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Note note = new Note(enoteTitle.getText().toString(),enoteText.getText().toString(),theDate,theTime); //create a knew note without id
+        Intent previous = new Intent(this,Activitynotes.class);
 
         switch (item.getItemId()){
             case R.id.Save:
-                AnoteClass note = new AnoteClass(noteTitle.getText().toString(),noteText.getText().toString(),theDate,theTime); //create a knew note without id
-                NoteSimpleDataBase db = new NoteSimpleDataBase(this);
-                db.NoteaddFunc(note); //Adds note object to database
+
+                db.NoteupdFunc(note); //Updates note object to database
                 Toast.makeText(this,"Note saved successfully",Toast.LENGTH_SHORT).show();
-                onBackPressed();
-                Intent previous = new Intent(this,Activitynotes.class);
                 previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(previous);
                 break;
             case R.id.del:
+                db.NotedelFunc(note);
                 Toast.makeText(this,"Note Discarded",Toast.LENGTH_SHORT).show();
-                onBackPressed();
+                previous.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(previous);
                 break;
+
+
         }
+
+        onBackPressed();
         return super.onOptionsItemSelected(item);
     }
 
@@ -105,4 +129,5 @@ public class ActivitynotesAdd extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
 }

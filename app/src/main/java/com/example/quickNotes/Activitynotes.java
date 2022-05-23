@@ -1,4 +1,4 @@
-package com.example.test1;
+package com.example.quickNotes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.List;
@@ -22,8 +21,9 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
     Toolbar toolbar;
     RecyclerView recyclerView;
     AdapterNoteClass adapter;
-    List<AnoteClass> notes;
-    NoteSimpleDataBase db;
+    List<Note> notes;
+    SQLiteDB db;
+    Button addNote;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +33,26 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
         toolbar = findViewById(R.id.toolbarnotes);
         setSupportActionBar(toolbar);
 
-        db = new NoteSimpleDataBase(this);
+        db = new SQLiteDB(this);
         notes = db.getNotesList();
+
+        addNote = (Button) findViewById(R.id.addnote);
+        addNote.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ActivitynotesAdd.class);
+                startActivity(intent);
+            }
+        });
+
 
         recyclerView = findViewById(R.id.listOfNotes);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AdapterNoteClass(this,notes);
         recyclerView.setAdapter(adapter);
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+        recyclerView.addOnItemTouchListener(new RecyclerViewTouchListener(getApplicationContext(), recyclerView, new RecyclerViewTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                AnoteClass note = notes.get(position);
+                Note note = notes.get(position);
                 Intent intent = new Intent(getApplicationContext(),ActivitynotesEdit.class);
                 intent.putExtra("nTitle",note.getTitle());
                 intent.putExtra("nContent",note.getText());
@@ -85,22 +94,20 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
-            case R.id.add:
-                Intent intent = new Intent(this,ActivitynotesAdd.class);
-                startActivity(intent);
-                break;
-            case R.id.ClearAll: // !!!! delete != del
-                NoteSimpleDataBase db = new NoteSimpleDataBase(this);
-                db.ClearAllNotes("notesDbTable");
-                Toast.makeText(this,"All notes cleared successfully",Toast.LENGTH_SHORT).show();
-                finish();
-                overridePendingTransition(0, 0);
-                startActivity(getIntent());
-                break;
+        if (item.getItemId() == R.id.ClearAll){
+            SQLiteDB db = new SQLiteDB(this);
+            db.ClearAllNotes("notesDbTable");
+            Toast.makeText(this,"All notes cleared successfully",Toast.LENGTH_SHORT).show();
+            finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+
         }
         return super.onOptionsItemSelected(item);
+
     }
+
+
 
     //When Back is pressed go to main activity refreshing it, NOT reloading it
     @Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.test1" >
+    package="com.example.quickNotes" >
 
     <application
         android:allowBackup="true"
@@ -10,25 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test1" >
         <activity
-            android:name=".ActivitynotesAdd"
+            android:name="com.example.quickNotes.ActivitynotesAdd"
             android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name=".ActivitynotesEdit"
+            android:name="com.example.quickNotes.ActivitynotesEdit"
             android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" />
         <activity
-            android:name=".ActivityAppinfo"
+            android:name="com.example.quickNotes.ActivityAppinfo"
             android:exported="false" />
         <activity
-            android:name=".ActivityAboutUs"
+            android:name="com.example.quickNotes.ActivityAboutUs"
             android:exported="false" />
         <activity
-            android:name=".Activitynotes"
+            android:name="com.example.quickNotes.Activitynotes"
             android:exported="false"
             android:theme="@style/Theme.Design.NoActionBar" /> <!-- added noactionbar style in manifest and Used NoActionBar so it would not crash because of the added toolbar in the notes activity -->
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.quickNotes.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

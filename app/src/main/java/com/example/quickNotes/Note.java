@@ -1,24 +1,22 @@
-package com.example.test1;
+package com.example.quickNotes;
 
-import androidx.recyclerview.widget.RecyclerView;
-
-public class AnoteClass {
+public class Note {
     private long ID;
     private String title;
     private String text;
     private String date;
     private String time;
 
-    AnoteClass(){}
+    Note(){}
 
-    AnoteClass(String title,String text, String date, String time){
+    Note(String title, String text, String date, String time){
         this.title=title;
         this.text=text;
         this.date=date;
         this.time=time;
     }
 
-    AnoteClass(long ID,String title,String text, String date, String time){ //This one takes also the id for editting note
+    Note(long ID, String title, String text, String date, String time){ //This one takes also the id for editting note
         this.ID=ID;
         this.title=title;
         this.text=text;
