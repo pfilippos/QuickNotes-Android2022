@@ -26,7 +26,7 @@
         <activity
             android:name="com.example.quickNotes.Activitynotes"
             android:exported="false"
-            android:theme="@style/Theme.Design.NoActionBar" /> <!-- added noactionbar style in manifest and Used NoActionBar so it would not crash because of the added toolbar in the notes activity -->
+            android:theme="@style/Theme.Design.NoActionBar" />added noactionbar style in manifest and Used NoActionBar so it would not crash because of the added toolbar in the notes activity -->
         <activity
             android:name="com.example.quickNotes.MainActivity"
             android:exported="true" >

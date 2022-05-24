@@ -13,7 +13,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -23,7 +26,8 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
     AdapterNoteClass adapter;
     List<Note> notes;
     SQLiteDB db;
-    Button addNote;
+    FloatingActionButton addNote;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +40,26 @@ public class Activitynotes extends AppCompatActivity { //Using androidX
         db = new SQLiteDB(this);
         notes = db.getNotesList();
 
-        addNote = (Button) findViewById(R.id.addnote);
+        addNote = (FloatingActionButton) findViewById(R.id.floatingActionButton);
         addNote.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActivitynotesAdd.class);
+                Intent intent = new Intent(Activitynotes.this, ActivitynotesAdd.class);
+                startActivity(intent);
+
+            }
+        }
+        );
+
+        back = (ImageButton) findViewById(R.id.imageButton2);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
             }
+
         });
+
 
 
         recyclerView = findViewById(R.id.listOfNotes);

@@ -1,6 +1,7 @@
 package com.example.quickNotes;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +23,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
-
-    ImageView imageView;
-    TextView textView;
-    List<Note> AreThereNotes;
+    TextView tvAreThereNotes, tvSub;
+    List<Note> noteList;
 
 
     @Override
@@ -51,20 +50,30 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_Open,R.string.menu_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar bar = getSupportActionBar();
+        bar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.gteal, null)));
+
+
 
         //Checks to see if there are any notes available, if not shows message and arrow!
-        textView = findViewById(R.id.aretherenotes);
-        imageView = findViewById(R.id.Arrow);
+        tvAreThereNotes = findViewById(R.id.aretherenotes);
+        tvSub = findViewById(R.id.textView9);
+
         SQLiteDB db = new SQLiteDB(this);
-        AreThereNotes = db.getNotesList();
-        if(AreThereNotes.isEmpty()){
-            textView.setVisibility(View.VISIBLE);
-            imageView.setVisibility(View.VISIBLE);
+        noteList = db.getNotesList();
+        if(noteList.isEmpty()){
+            tvSub.setText("Touch the menu to add a note!");
+            tvAreThereNotes.setText("You have no notes yet!");
+        }
+        else if(noteList.size() == 1){
+            tvAreThereNotes.setText("You have 1 note!");
+
         }
         else{
-            textView.setVisibility(View.GONE);
-            imageView.setVisibility(View.GONE);
+            tvAreThereNotes.setText("You have " + noteList.size()+" notes!");
         }
 
 

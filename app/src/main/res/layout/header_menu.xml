@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@drawable/istockphoto_1146651425_612x612"
+    android:background="@drawable/menuheader"
     android:orientation="vertical"
     android:padding="20dp"/>
+

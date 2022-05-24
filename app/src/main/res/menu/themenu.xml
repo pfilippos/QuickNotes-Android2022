@@ -5,17 +5,16 @@
 
         <item android:id="@+id/Homemenu" android:title="Home"/>
         <item android:id="@+id/Notesmenu" android:title="Notes"/>
-
-    </group>
-
-    <group android:checkableBehavior="single">
-
         <item android:title="Information">
 
             <menu>
                 <group>
-                    <item android:id="@+id/Aboutusmenu" android:title="About us"/>
-                    <item android:id="@+id/Infomenu" android:title="App info"/>
+                    <item
+                        android:id="@+id/Aboutusmenu"
+                        android:title="About us" />
+                    <item
+                        android:id="@+id/Infomenu"
+                        android:title="App info" />
                 </group>
 
             </menu>
