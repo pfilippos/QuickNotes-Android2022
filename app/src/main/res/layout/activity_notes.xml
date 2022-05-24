@@ -11,9 +11,7 @@
         android:id="@+id/toolbarnotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="474dp"
-        android:background="@color/design_default_color_primary"
-        app:layout_constraintBottom_toTopOf="@+id/addnote"
+        android:background="#1A30A5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,11 +30,13 @@
         android:id="@+id/addnote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="153dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/add_note"
+        android:textColor="@color/white"
+        android:background="@drawable/roundbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarnotes" />
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

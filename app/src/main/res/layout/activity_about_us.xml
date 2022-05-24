@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.17" />
 
     <TextView
         android:id="@+id/textView3"
@@ -30,8 +30,22 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.442" />
+
+    <TextView
+        android:id="@+id/Panagiotis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Panagiotis Papasotiriou is an undergraduate\n student at Aristotle University of
+thessaloniki \n and Currently in his third year of studies"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView4"
@@ -44,7 +58,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.771" />
+        app:layout_constraintVertical_bias="0.713" />
+
+    <TextView
+        android:id="@+id/Filippos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Filippos Panos is an undergraduate student at \n Aristotle University of
+thessaloniki \n and Currently in his third year of studies"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/Giorgos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Grapse etsi kati ligo na fainetai senio"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -54,7 +92,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="652dp"
-        android:background="?attr/colorPrimary"
+        android:background="#1A30A5"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         android:title="@string/about_us"
@@ -65,12 +103,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="410dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="CSD AUTH Students"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Giorgos"
+        app:layout_constraintVertical_bias="0.857" />
 </androidx.constraintlayout.widget.ConstraintLayout>

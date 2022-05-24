@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/design_default_color_primary"/>
+        android:background="#1A30A5"/>
 
     <EditText
         android:id="@+id/noteTitle"
@@ -23,6 +23,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:editable="false"
         android:ems="10"
         android:inputType="none"
         android:textColorHint="#757575"
@@ -30,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarnotes"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/noteText"
