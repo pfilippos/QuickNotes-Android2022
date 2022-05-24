@@ -86,7 +86,7 @@ public class ActivitynotesEdit extends AppCompatActivity {
         });
 
         calendar=Calendar.getInstance();
-        theDate =calendar.get(Calendar.YEAR)+ "/" + (calendar.get(Calendar.MONTH)+1)+ "/" + calendar.get(Calendar.DAY_OF_MONTH); // D/M/Y
+        theDate =calendar.get(Calendar.DAY_OF_MONTH)+ "/" + (calendar.get(Calendar.MONTH)+1)+ "/" +calendar.get(Calendar.YEAR); // D/M/Y
         theTime=correct(calendar.get(Calendar.HOUR))+ ":" + correct(calendar.get(Calendar.MINUTE));
 
     }
